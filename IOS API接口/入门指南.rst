@@ -3,9 +3,9 @@ SDK入门指南
 ============
 
 使用说明
-========
+============
 
-.. image::  ../images/图片12.jpg
+.. image::  ../images/image12.jpg
 
 - 第一步：在AppDelegate系统回调的函数中初始化游戏支持的横竖屏方向和设置内嵌社区支持的方向 详看Demo工程
 - 第二步：SDK初始化接口
@@ -21,7 +21,8 @@ SDK入门指南
     + (void)checkGameCommunityNotice:(UIWindow *)window completionBlock:(void (^)(NSError * _Nullable error))completionHandler;
 
 功能描述:弹出式通知直接展现在游戏界面中,为社区运营者提供一个非常高效的方式，来完成社区重要内容的传播到达。（如下图）
-.. image::  ../images/图片13.jpg
+
+.. image::  ../images/image13.jpg
 
 - 第三步：设置游戏内弹出社区通知(在需要该功能的游戏界面进行调用即可)
 

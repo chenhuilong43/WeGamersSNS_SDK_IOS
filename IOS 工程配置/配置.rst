@@ -5,14 +5,14 @@
 设置Other Linker Flags -ObjC
 =============================
 
-.. image::  ../images/图片8.jpg
+.. image::  ../images/image8.jpg
 
 设置依赖库
 =========
 
-.. image::  ../images/图片9.jpg
+.. image::  ../images/image9.jpg
 
 设置支持http请求
 ===============
 
-.. image::  ../images/图片10.jpg
+.. image::  ../images/image10.jpg
