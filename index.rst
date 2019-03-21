@@ -28,13 +28,13 @@ WeGamers 社区接入文档
     :caption: IOS 工程配置
     :numbered:
 
-    IOS 工程配置/资源导入
-    IOS 工程配置/配置
+    AndroidAPI接口使用/接口使用
+    Android初始化错误码/错误码
 
 .. toctree::
     :caption: IOS API接口
     :numbered:
 
-    IOS API接口/入门指南
-    IOS API接口/API接口
+    AndroidAPI接口使用/接口使用
+    Android初始化错误码/错误码
 
