@@ -1,0 +1,116 @@
+.. _topics-API接口:
+
+================
+SDK初始化
+================
+
+说明：初始化SDK参数，使用其他API接口前需先调用初始化接口，可在社区入口页面被创建时调用
+
+WeGamersSDKParams params = new WeGamersSDKParams();
+
+params.setGameAccountId(String accountId);           
+	参数说明：游戏玩家唯一账号ID,由接入方提供，必填项
+
+params.setNickName(String name);              
+	参数说明：游戏玩家昵称，由接入方提供
+
+params.setSkinType(int iSkinType);                
+	参数说明：指定主题皮肤类型，不填写则使用默认，数据值定义在常量类SkinType             
+	SkinType.SKIN_DEFUALT 默认主题               
+	SkinType.SKIN_VIOLET 紫色主题              
+	SkinType.SKIN_DARK 深色主题                 
+	SkinType.SKIN_LM  王国纪元主题              
+	SkinType.SKIN_CC_COL2  CC主题               
+
+params.setLandscape(boolean isLandscape);
+	参数说明：是否横屏：true 横屏，false 竖屏,默认横屏
+	注意：SDK内部有切换横竖屏功能，且会记住用户最后一次操作，第二次进入如果setLandscape与第一次值一致，	方向会直接使用用户最后操作的方式
+
+params.setSdkId(String sdkId);
+	参数说明：wegamers后台提供的sdk id，由wegamers提供，必填项
+
+WegamersSDK.getInstance().setSdkParams(params);
+WegamersSDK.getInstance().initialize(Context ctx, new WegamersSDK.WGSDKInitListener() {
+		@Override
+		public void onInitComplete() { }
+		 
+        @Override
+		public void onShowEntrance(boolean isShow) {
+			//选择性的用来控制社区入口显示
+			//（系统版本低于5.0的进入社区会有通用提示不能使用，游戏方可直接对入口进行隐藏）
+			
+			//isShow:true 可正常显示，flase 可隐藏
+		}
+});
+
+WegamersSDK.getInstance().setWGMsgReddotListener(
+		new WegamersSDK.WGMsgReddotListener() {
+			@Override
+			public void onMsgReddot(boolean isHas) {
+				//事件处理最新消息红点提示,红点显示由接入方在入口处显示
+				//isHas ture 显示红点，false 清除红点
+			}
+});
+
+
+================
+通知消息检测
+================
+
+说明：检测后台配置的公告通知消息，弹出式通知显示由SDK提供，可在需要显示的页面调用该接口
+
+WegamersSDK.getInstance().checkNewNoticeMessage();
+
+================
+设置不弹通知窗口状态
+================
+
+说明：通知消息显示页面可有接入方控制，避免数据延时在战斗中显示，如果提前进入战斗可调用该API控制
+
+WegamersSDK.getInstance().setInComBat(boolean inComBat)；
+	参数说明：inComBat ：true进入战斗，再次调用checkNewNoticeMessage会自动置flase
+
+================
+进入内嵌游戏社区
+================
+
+说明：进入内嵌社区的调用接口
+
+WegamersSDK.getInstance().startBrowser(Context ctx);
+
+================
+进入内嵌社区某帖子详情
+================
+
+说明：接口可选用，提供帖子详情URL进入内嵌社区展示帖子详情内容
+
+WegamersSDK.getInstance().startBrowser(Context ctx,String snsDetailUrl);
+	参数说明：Context  ctx ：Activity上下文，String snsDetailUrl 帖子详情URL
+
+================
+退出游戏销毁服务
+================
+
+说明：退出游戏时调用该接口，用于销毁服务进程
+
+@Override
+protected void onDestroy() {
+	WegamersSDK.getInstance().onDestroy();
+	super.onDestroy();
+}
+
+================
+错误码
+================
+
+接口初始化提示CODE定义在ErrorCode
+
+ERR_PARAMS_DEFECT = 6004;//参数缺失
+
+ERR_IGGID_DEFECT = 6000;//游戏ID缺失
+
+ERR_SDKID_DEFECT = 6001;//SDKID缺失
+
+ERR_NICKNAME_DEFECT = 6002;//游戏昵称缺失
+
+ERR_SYS_VER = 6003;//系统版本低于5.0
